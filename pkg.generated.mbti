@@ -1,0 +1,30 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "Yoorkin/splice"
+
+// Values
+fn char_at(Int, Int, String, unit? : PosUnit) -> Replacement
+
+fn multiline((Int, Int), (Int, Int), String, unit? : PosUnit) -> Replacement
+
+fn point(Int, Int, String, unit? : PosUnit) -> Replacement
+
+fn range(Int, Int, Int, String, unit? : PosUnit) -> Replacement
+
+fn splice(StringView, Array[Replacement]) -> String
+
+// Errors
+
+// Types and methods
+pub(all) enum PosUnit {
+  Unicode
+}
+impl Compare for PosUnit
+impl Eq for PosUnit
+
+type Replacement
+impl Eq for Replacement
+
+// Type aliases
+
+// Traits
+
