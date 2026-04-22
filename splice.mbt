@@ -203,7 +203,7 @@ pub fn splice(
   for subst in replacements {
     buf
     ..write_iter(chars[last_offset:subst.start_offset].iter())
-    ..write_string(subst.replacement)
+    .write_string(subst.replacement)
     last_offset = subst.end_offset + 1
   }
   buf.write_iter(chars[last_offset:].iter())
