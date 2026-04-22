@@ -2,27 +2,24 @@
 package "Yoorkin/splice"
 
 // Values
-fn char_at(Int, Int, String, unit? : PosUnit) -> Replacement
+pub fn char_at(Int, Int, String, unit? : PosUnit) -> Replacement
 
-fn multiline((Int, Int), (Int, Int), String, unit? : PosUnit) -> Replacement
+pub fn multiline((Int, Int), (Int, Int), String, unit? : PosUnit) -> Replacement
 
-fn point(Int, Int, String, unit? : PosUnit) -> Replacement
+pub fn point(Int, Int, String, unit? : PosUnit) -> Replacement
 
-fn range(Int, Int, Int, String, unit? : PosUnit) -> Replacement
+pub fn range(Int, Int, Int, String, unit? : PosUnit) -> Replacement
 
-fn splice(StringView, Array[Replacement]) -> String
+pub fn splice(StringView, Array[Replacement]) -> String
 
 // Errors
 
 // Types and methods
 pub(all) enum PosUnit {
   Unicode
-}
-impl Compare for PosUnit
-impl Eq for PosUnit
+} derive(Compare, Eq)
 
-type Replacement
-impl Eq for Replacement
+type Replacement derive(Eq)
 
 // Type aliases
 
