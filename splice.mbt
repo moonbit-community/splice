@@ -9,7 +9,7 @@ struct Replacement {
 } derive(Eq)
 
 ///|
-impl Compare for Replacement with compare(self, other) {
+impl Compare for Replacement with fn compare(self, other) {
   match self.start_line.compare(other.start_line) {
     0 =>
       match self.start_column.compare(other.start_column) {

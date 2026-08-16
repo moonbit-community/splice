@@ -18,10 +18,18 @@ pub fn splice(StringView, Array[Replacement]) -> String
 pub(all) enum PosUnit {
   Unicode
 } derive(Compare, Eq)
+pub fn PosUnit::compare(Self, Self) -> Int
+pub fn PosUnit::equal(Self, Self) -> Bool
+pub fn PosUnit::not_equal(Self, Self) -> Bool
+pub fn PosUnit::op_ge(Self, Self) -> Bool
+pub fn PosUnit::op_gt(Self, Self) -> Bool
+pub fn PosUnit::op_le(Self, Self) -> Bool
+pub fn PosUnit::op_lt(Self, Self) -> Bool
 
 type Replacement derive(Eq)
+pub fn Replacement::equal(Self, Self) -> Bool
+pub fn Replacement::not_equal(Self, Self) -> Bool
 
 // Type aliases
 
 // Traits
-
