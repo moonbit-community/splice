@@ -1,15 +1,15 @@
 ///|
 struct Replacement {
-  start_line : Int
-  start_column : Int
-  end_line : Int
-  end_column : Int
+  start_line : Int32
+  start_column : Int32
+  end_line : Int32
+  end_column : Int32
   replacement : String
   unit : PosUnit
 } derive(Eq)
 
 ///|
-impl Compare for Replacement with compare(self, other) {
+impl Compare for Replacement with fn compare(self, other) {
   match self.start_line.compare(other.start_line) {
     0 =>
       match self.start_column.compare(other.start_column) {
@@ -27,8 +27,8 @@ pub(all) enum PosUnit {
 
 ///|
 priv struct OffsetReplacement {
-  start_offset : Int
-  end_offset : Int
+  start_offset : Int32
+  end_offset : Int32
   replacement : String
 }
 
@@ -40,10 +40,10 @@ priv struct OffsetReplacement {
 /// - `column`: The column number (0-based, in Unicode characters) where the replacement occurs.
 /// - `replacement`: The string to insert at the specified position.
 pub fn point(
-  line : Int,
-  column : Int,
+  line : Int32,
+  column : Int32,
   replacement : String,
-  unit? : PosUnit = Unicode,
+  unit~ : PosUnit = Unicode,
 ) -> Replacement {
   {
     start_line: line,
@@ -63,10 +63,10 @@ pub fn point(
 /// - `column`: The column number (0-based, in Unicode characters) where the replacement occurs.
 /// - `replacement`: The string to insert at the specified point.
 pub fn char_at(
-  line : Int,
-  column : Int,
+  line : Int32,
+  column : Int32,
   replacement : String,
-  unit? : PosUnit = Unicode,
+  unit~ : PosUnit = Unicode,
 ) -> Replacement {
   {
     start_line: line,
@@ -87,11 +87,11 @@ pub fn char_at(
 /// - `end_column`: The ending column number (0-based, in Unicode characters, inclusive) of the range.
 /// - `replacement`: The string to replace the specified range.
 pub fn range(
-  line : Int,
-  start_column : Int,
-  end_column : Int,
+  line : Int32,
+  start_column : Int32,
+  end_column : Int32,
   replacement : String,
-  unit? : PosUnit = PosUnit::Unicode,
+  unit~ : PosUnit = PosUnit::Unicode,
 ) -> Replacement {
   {
     start_line: line,
@@ -112,10 +112,10 @@ pub fn range(
 /// - `replacement`: The string to replace the specified range.
 /// 
 pub fn multiline(
-  start : (Int, Int),
-  end : (Int, Int),
+  start : (Int32, Int32),
+  end : (Int32, Int32),
   replacement : String,
-  unit? : PosUnit = PosUnit::Unicode,
+  unit~ : PosUnit = PosUnit::Unicode,
 ) -> Replacement {
   {
     start_line: start.0,
@@ -198,7 +198,7 @@ pub fn splice(
 ) -> String {
   replacements.sort()
   let mut last_offset = 0
-  let buf = StringBuilder::new()
+  let buf = StringBuilder()
   let (chars, replacements) = get_utf16_codeunit_index(template, replacements)
   for subst in replacements {
     buf
